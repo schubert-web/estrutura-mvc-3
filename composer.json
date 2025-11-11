@@ -1,0 +1,11 @@
+{
+    "name": "koan/mvc",
+    "description": "MVC Structure",
+    "authors": [
+        {
+            "name": "schubert-web",
+            "email": "gabriel.schubert.araujo@gmail.com"
+        }
+    ],
+    "require": {}
+}
