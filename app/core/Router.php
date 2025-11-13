@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Core;
-require_once('functions.php');
 
 use App\Controllers\HomeController;
 use App\Controllers\Errors\HttpErrorController;
