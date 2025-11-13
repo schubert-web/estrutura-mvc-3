@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 class Usuario{
     public function getUserData(){
         // Simulando dados de usuário

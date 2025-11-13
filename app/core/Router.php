@@ -1,9 +1,10 @@
 <?php
 
-require_once("../app/controllers/HttpErrorController.php");
-require_once("../app/controllers/HomeController.php");
-require_once("../app/controllers/errors/NoticiasController.php");
+namespace App\Core;
+require_once('functions.php');
 
+use App\Controllers\HomeController;
+use App\Controllers\Errors\HttpErrorController;
 
 class Router{
     public function dispatch($url)
@@ -11,11 +12,13 @@ class Router{
         $url = trim($url, '/');
         $parts = $url ? explode('/', $url) : [];
 
+        //var_dump($parts);
+
         $controllerName = $parts[0] ?? 'Home';
-        $controllerName = ucfirst($controllerName) . 'Controller';
-
+        $controllerName = 'App\Controllers\\' . ucfirst($controllerName) . 'Controller';
+;
         $actionName = $parts[1] ?? 'index';
-
+        
 
         if(!class_exists($controllerName)){
             $controller = new HttpErrorController();
@@ -24,7 +27,7 @@ class Router{
         }
 
         // instanciando pelo nome da variável
-        $controller = new $controllerName();
+        $controller = new $controllerName;
 
 
         if(!method_exists($controller, $actionName)){
@@ -34,6 +37,7 @@ class Router{
         }
 
         $params = array_slice($parts, 2);
+        dd($actionName,$controllerName, $parts, $url);
 
         call_user_func_array([$controller, $actionName], $params);
     }
